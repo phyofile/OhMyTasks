@@ -1,0 +1,43 @@
+@model IEnumerable<TasksManagerMVC.Models.TaskItem>
+
+@{
+    ViewData["Title"] = "Task List";
+}
+
+<h1>Task List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Task</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Description</td>
+                <td>@(item.IsCompleted ? "Completed" : "Pending")</td>
+                <td>
+                    @if (!item.IsCompleted)
+                    {
+                        <form asp-action="Complete" style="display: inline;">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-success btn-sm">Complete</button>
+                        </form>
+                    }
+                    <form asp-action="Delete" style="display: inline;">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
