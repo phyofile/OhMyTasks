@@ -6,11 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add DbContext
-builder.Services.AddDbContext<Data.ApplicationDbContext>(options =>
+builder.Services.AddDbContext<TasksManagerMVC.Data.ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add TaskManager as a scoped service
-builder.Services.AddScoped<Models.TaskManager>();
+builder.Services.AddScoped<TasksManagerMVC.Models.TaskManager>();
 
 var app = builder.Build();
 

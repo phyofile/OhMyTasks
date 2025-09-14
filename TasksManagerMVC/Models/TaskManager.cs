@@ -13,7 +13,11 @@ namespace TasksManagerMVC.Models
 
         public void AddTask(string description)
         {
-            var task = new TaskItem(description);
+            var task = new TaskItem
+            {
+                Description = description,
+                IsCompleted = false
+            };
             _context.AspNetOhMyTasks.Add(task);
             _context.SaveChanges();
         }
