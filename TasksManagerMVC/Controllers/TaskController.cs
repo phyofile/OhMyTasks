@@ -5,7 +5,12 @@ namespace TasksManagerMVC.Controllers
 {
     public class TaskController : Controller
     {
-        private readonly TaskManager _taskManager = new();
+        private readonly TaskManager _taskManager;
+
+        public TaskController(TaskManager taskManager)
+        {
+            _taskManager = taskManager;
+        }
 
         public IActionResult Index()
         {
